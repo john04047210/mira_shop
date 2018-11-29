@@ -20,7 +20,7 @@
     <view class="userinfo" wx:if="{{userInfo.init == false}}">
       <button type="primary" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
     </view>
-    <view class="userinfo" @tap="handleViewTap" wx:else>
+    <view class="userinfo" @tap="showUserDetail" wx:else>
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
     </view>
@@ -173,7 +173,13 @@
       onGotUserInfo (e) {
         this.userInfo = e.detail.userInfo
         this.userInfo.init = true
+        this.$parent.globalData.userInfo = this.userInfo
         this.$apply()
+      },
+      showUserDetail () {
+        wepy.navigateTo({
+          url: 'userinfo'
+        })
       },
       plus () {
         this.mynum++
@@ -226,8 +232,9 @@
       }
     }
 
-    onLoad() {
+    async onLoad() {
       let self = this
+      await wepy.login()
       self.normalTitle = '标题已被修改'
 
       self.setTimeoutTitle = '标题三秒后会被修改'
