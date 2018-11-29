@@ -2,7 +2,7 @@
 mira shop
 
 ### 初始化项目
-    wepy init standard mira_shop ##不要redux模块<br>
-    cd mira_shop<br>
-    npm install<br>
+    wepy init standard mira_shop ##不要redux模块
+    cd mira_shop
+    npm install
     npm run dev
