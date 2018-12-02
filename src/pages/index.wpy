@@ -82,6 +82,7 @@
 
 <script>
   import wepy from 'wepy'
+  import auth from '../api/auth'
   import Panel from '@/components/panel' // alias example
   import Counter from 'counter' // alias example
   import List from '../components/list' // aliasFields example
@@ -234,7 +235,10 @@
 
     async onLoad() {
       let self = this
-      await wepy.login()
+      const checkSession = await auth.checkSession()
+      if (!checkSession) {
+        self.$parent.globalData.openid = await auth.loginWepy()
+      }
       self.normalTitle = '标题已被修改'
 
       self.setTimeoutTitle = '标题三秒后会被修改'

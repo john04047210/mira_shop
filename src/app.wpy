@@ -28,6 +28,8 @@ export default class extends wepy.app {
   }
 
   globalData = {
+    appid: 'wxa55f028bafde4230',
+    domain: 'http://wepy.shilikaif.com',
     openid: null,
     userInfo: null
   }
@@ -40,6 +42,16 @@ export default class extends wepy.app {
     this.intercept('request', {
       // 发出请求时的回调函数
       config (p) {
+        if (typeof p === 'object') {
+          if (p.hasOwnProperty('header')) {
+            if (!p.header.hasOwnProperty('APPID')) {
+              p.header['APPID'] = this.globalData.appid
+            }
+          } else {
+            p['header'] = {}
+            p.header['APPID'] = this.globalData.appid
+          }
+        }
         // 对所有request请求中的OBJECT参数对象统一附加时间戳属性
         p.timestamp = +new Date()
         console.log('config request: ', p)
