@@ -17,6 +17,13 @@
 </style>
 <template>
   <view class="container">
+    <view class="userinfo" wx:if="{{userInfo.init == false}}">
+      <button type="primary" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+    </view>
+    <view class="userinfo" @tap="showUserDetail" wx:else>
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
+    </view>
 
     <panel>
       <view class="title" slot="title">测试数据绑定</view>
@@ -86,9 +93,9 @@
 
   console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
 
-  export default class Index extends wepy.page {
+  export default class Demo extends wepy.page {
     config = {
-      navigationBarTitleText: '首页'
+      navigationBarTitleText: '模版'
     }
     components = {
       panel: Panel,
@@ -228,7 +235,7 @@
 
     async onLoad() {
       let self = this
-      const checkSession = false
+      const checkSession = await auth.checkSession()
       if (!checkSession) {
         self.$parent.globalData.openid = await auth.loginWepy()
       }

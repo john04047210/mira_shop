@@ -24,11 +24,24 @@ export default class auth {
     const header = {}
     header['APPID'] = wepy.$instance.globalData.appid
     const resp = await http.get(url, header)
-    console.log(resp)
     if (resp.code == 0) {
       wepy.setStorageSync('openid', resp.data)
       openid = resp.data.openid
     }
     return openid
+  }
+  static async getUserinfo() {
+    let userinfo = null
+    let url = `${wepy.$instance.globalData.domain}/api/user/me`;
+    const resp = await http.get(url)
+    if (resp.code == 0) {
+      wepy.setStorageSync('userinfo', resp.data)
+      userinfo = resp.data
+    }
+    return userinfo
+  }
+  static async uptUserinfo(userinfo) {
+    let url = `${wepy.$instance.globalData.domain}/api/user/me`;
+    http.put(url, userinfo)
   }
 }

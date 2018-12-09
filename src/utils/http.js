@@ -23,4 +23,12 @@ export default class http {
   static async post(url, data, header=null) {
     return this.request(url, 'POST', data, header)
   }
+
+  static async put(url, data, header=null) {
+    return this.request(url, 'PUT', data, header)
+  }
+
+  static async delete(url, header=null) {
+    return this.request(url, 'DELETE', header)
+  }
 }

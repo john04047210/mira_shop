@@ -15,15 +15,39 @@ import 'wepy-async-function'
 
 export default class extends wepy.app {
   config = {
+    debug: true,
     pages: [
       'pages/index',
-      'pages/userinfo'
+      'pages/userinfo',
+      'pages/demo'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      list: [
+        {
+          'pagePath': 'pages/index',
+          'text': '首页',
+          'iconPath': 'images/tab/home.png',
+          'selectedIconPath': 'images/tab/home-active.png'
+        },
+        {
+          'pagePath': 'pages/userinfo',
+          'text': '我的',
+          'iconPath': 'images/tab/user.png',
+          'selectedIconPath': 'images/tab/user-active.png'
+        },
+        {
+          'pagePath': 'pages/demo',
+          'text': 'Demo',
+          'iconPath': 'images/tab/demo.png',
+          'selectedIconPath': 'images/tab/demo-active.png'
+        }
+      ]
     }
   }
 
@@ -47,9 +71,15 @@ export default class extends wepy.app {
             if (!p.header.hasOwnProperty('APPID')) {
               p.header['APPID'] = this.globalData.appid
             }
+            if (this.globalData.openid) {
+              p.header['OPENID'] = this.globalData.openid
+            }
           } else {
             p['header'] = {}
             p.header['APPID'] = this.globalData.appid
+            if (this.globalData.openid) {
+              p.header['OPENID'] = this.globalData.openid
+            }
           }
         }
         // 对所有request请求中的OBJECT参数对象统一附加时间戳属性
