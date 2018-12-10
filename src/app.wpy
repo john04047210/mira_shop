@@ -53,7 +53,7 @@ export default class extends wepy.app {
 
   globalData = {
     appid: 'wxa55f028bafde4230',
-    domain: 'http://wepy.shilikaif.com',
+    domain: wepy.$appConfig.baseUrl,
     openid: null,
     userInfo: null
   }
