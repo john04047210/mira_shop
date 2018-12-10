@@ -1,4 +1,5 @@
 const path = require('path');
+const LessPluginAutoPrefix = require('less-plugin-autoprefix');
 var prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -53,6 +54,12 @@ if (prod) {
 
   // 压缩sass
   // module.exports.compilers['sass'] = {outputStyle: 'compressed'}
+  
+  // 压缩less
+  module.exports.compilers['less'] = {
+    compress: prod,
+    plugins: [new LessPluginAutoPrefix({browsers: ['Android >= 2.3', 'Chrome > 20', 'iOS >= 6']})]
+  }
 
   // 压缩js
   module.exports.plugins = {
