@@ -43,7 +43,8 @@ module.exports = {
   plugins: {
   },
   appConfig: {
-    noPromiseAPI: ['createSelectorQuery']
+    noPromiseAPI: ['createSelectorQuery'],
+    baseUrl: process.env.NODE_ENV === 'production' ? 'https://wepy.shilikaif.com' : 'http://wepy.shilikaif.com
   }
 }
 
