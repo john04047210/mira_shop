@@ -69,6 +69,12 @@
       <list></list>
     </panel>
 
+    <panel>
+      <view class="title" slot="title">分包测试</view>
+      <button @tap="packagepage({{'client'}})" size="mini"> Client </button>
+      <button @tap="packagepage({{'server'}})" size="mini"> Server </button>
+    </panel>
+
     <toast />
   </view>
 </template>
@@ -164,6 +170,18 @@
     }
 
     methods = {
+      packagepage (target) {
+        if (target === 'client') {
+          wepy.navigateTo({
+            url: '../packageClient/pages/demo'
+          })
+        }
+        if (target === 'server') {
+          wepy.navigateTo({
+            url: '../packageServer/pages/demo'
+          })
+        }
+      },
       onGotUserInfo (e) {
         this.userInfo = e.detail.userInfo
         this.userInfo.init = true

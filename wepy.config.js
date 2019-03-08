@@ -46,7 +46,7 @@ module.exports = {
   },
   appConfig: {
     noPromiseAPI: ['createSelectorQuery'],
-    baseUrl: process.env.NODE_ENV === 'production' ? 'https://wepy.shilikaif.com' : 'http://wepy.shilikaif.com'
+    baseUrl: 'http://wepy.shilikaif.com'
   }
 }
 
@@ -80,4 +80,7 @@ if (prod) {
       }
     }
   }
+
+  // domain
+  module.exports.appConfig.baseUrl = 'https://wepy.shilikaif.com'
 }

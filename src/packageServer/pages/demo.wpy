@@ -1,0 +1,23 @@
+<script>
+  import wepy from 'wepy'
+
+  export default class DemoPage extends wepy.page {
+    config = {
+      navigationBarTitleText: '服务端测试页面'
+    }
+    components = {}
+    mixins = []
+    data = {}
+    computed = {}
+    methods = {}
+    events = {}
+  }
+</script>
+
+<template>
+  <view class="container">
+    <text class="info">package server</text>
+  </view>
+</template>
+<style lang="less">
+</style>

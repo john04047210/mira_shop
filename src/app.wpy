@@ -21,6 +21,25 @@ export default class extends wepy.app {
       'pages/userinfo',
       'pages/demo'
     ],
+    subpackages: [
+      {
+        root: 'packageClient',
+        name: 'client',
+        independent: false,
+        pages: ['pages/demo']
+      },
+      {
+        root: 'packageServer',
+        name: 'server',
+        independent: false,
+        pages: ['pages/demo']
+      }
+    ],
+    preloadRule: {
+      'pages/index': {
+        packages: ['client', 'server']
+      }
+    },
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
@@ -53,7 +72,7 @@ export default class extends wepy.app {
 
   globalData = {
     appid: 'wxa55f028bafde4230',
-    domain: wepy.$appConfig.baseUrl,
+    domain: 'http://wepy.shilikaif.com:801', // wepy.$appConfig.baseUrl,
     openid: null,
     userInfo: null
   }
