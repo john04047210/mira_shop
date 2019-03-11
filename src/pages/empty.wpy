@@ -1,0 +1,46 @@
+<style lang="less">
+</style>
+<template>
+  <view class="container">
+    <text class="">{{title}}</text>
+    <van-button type="primary">按钮1</van-button>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class EmptyPage extends wepy.page {
+    config = {    // 只在Page实例中存在的配置数据，对应于原生的page.json文件
+      navigationBarTitleText: '页面',
+      usingComponents: {
+        'van-button': '../components/vant/button/index'
+      }
+    }
+    data = {      // 页面所需数据均需在这里声明，可用于模板数据绑定
+      title: 'test page client'
+    }
+
+    async onLoad() {   // 在Page和Component共用的生命周期函数
+      this.title = 'empty'
+      this.$apply()
+    }
+    customData = {}  // 自定义数据
+
+    customFunction () {}  // 自定义方法
+
+    onShow () {}  // 只在Page中存在的页面生命周期函数
+
+    components = {};  // 声明页面中所引用的组件，或声明组件中所引用的子组件
+
+    mixins = [];  // 声明页面所引用的Mixin实例
+
+    computed = {};  // 声明计算属性（详见后文介绍）
+
+    watch = {};  // 声明数据watcher（详见后文介绍）
+
+    methods = {};  // 声明页面wxml中标签的事件处理函数。注意，此处只用于声明页面wxml中标签的bind、catch事件，自定义方法需以自定义方法的方式声明
+
+    events = {};  // 声明组件之间的事件处理函数
+  }
+</script>

@@ -170,14 +170,14 @@
     }
 
     methods = {
-      packagepage (target) {
+      async packagepage (target) {
         if (target === 'client') {
-          wepy.navigateTo({
+          await wepy.navigateTo({
             url: '../packageClient/pages/demo'
           })
         }
         if (target === 'server') {
-          wepy.navigateTo({
+          await wepy.navigateTo({
             url: '../packageServer/pages/demo'
           })
         }
